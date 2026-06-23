@@ -1,0 +1,13 @@
+*.sqlite*
+# Chặn các file môi trường chứa pass database, mật khẩu API AI
+.env
+
+
+# Chặn thư mục thư viện (vì Docker tự cài, không cần đẩy lên web)
+backend-api/vendor/
+
+
+# Chặn các file rác của hệ điều hành, IDE
+.DS_Store
+.vscode/
+.idea/
