@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Admin\StudentManagementController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\TeacherAssignmentController;
 use App\Http\Controllers\Api\Admin\TeacherManagementController;
+use App\Http\Controllers\Api\Admin\QuestionController;
+use App\Http\Controllers\Api\Admin\PracticeController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -33,6 +35,11 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     // --- KHỐI QUẢN LÝ MÔN HỌC (SUBJECTS) ---
     Route::post('/subjects', [CategoryController::class, 'storeSubject']);          // Thêm môn
     Route::put('/subjects/{id}', [CategoryController::class, 'updateSubject']);      // Sửa môn (Mới thêm)
+    // Quản lý ngân hàng câu hỏi
+    Route::get('/questions', [QuestionController::class, 'index']);
+    Route::post('/questions', [QuestionController::class, 'store']);
+    Route::put('/questions/{id}', [QuestionController::class, 'updateWithUpsert']);
+    Route::delete('/questions/{id}', [QuestionController::class, 'destroy']);
     // --- KHỐI QUẢN LÝ CHƯƠNG/BÀI (CHAPTERS) ---
     Route::post('/chapters', [CategoryController::class, 'storeChapter']);
     Route::put('/chapters/{id}', [CategoryController::class, 'updateChapter']);
@@ -44,4 +51,5 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::put('/teachers/{id}/toggle-status', [TeacherManagementController::class, 'toggleStatus']);
     // Route phân công phụ trách môn học
     Route::post('/teachers/{id}/assign-subjects', [TeacherAssignmentController::class, 'assignSubjects']);
+    Route::post('/practice/create-by-chapter', [PracticeController::class, 'createChapterPracticeQuiz']);
 });

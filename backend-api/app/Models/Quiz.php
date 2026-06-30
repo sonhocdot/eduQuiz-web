@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    protected $fillable = ['subject_id', 'title', 'type', 'duration', 'total_questions', 'created_by'];
+    protected $fillable = ['subject_id', 'title', 'type', 'duration', 'total_questions', 'created_by', 'quiz_type', 'is_public'];
 
     protected $casts = [
         'duration' => 'integer',

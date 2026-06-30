@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $fillable = ['chapter_id', 'question_text', 'difficulty', 'explanation', 'created_by'];
+    protected $fillable = ['chapter_id', 'question_text', 'difficulty', 'explanation', 'created_by','audio_url', 'type', 'usage_type'];
 
     // Ràng buộc enum của cột difficulty
     // (Nếu dùng Laravel 11+, bạn có thể kết hợp thêm PHP Enum để quản lý 'easy', 'medium', 'hard')
