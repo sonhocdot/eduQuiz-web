@@ -5,18 +5,16 @@ const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-    },
+    }
 });
 
-// Tự động thêm Token vào Header nếu có
+// Tự động gắn Token vào Header của mọi request dưới dạng Bearer Token
 axiosClient.interceptors.request.use((config) => {
     const token = localStorage.getItem('access_token');
-    if (token) {
+    if (token && config.headers) {
         config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-}, (error) => {
-    return Promise.reject(error);
 });
 
 export default axiosClient;
